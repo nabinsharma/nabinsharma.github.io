@@ -1,65 +1,13 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      html, body, #map-canvas {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script
-       src="https://maps.googleapis.com/maps/api/js?libraries=geometry,visualization">
-    </script>
-    <script>
-      var map;
-// https://developers.google.com/maps/tutorials/visualizing/earthquakes
-function initialize() {
-    var mapOptions = {
-        zoom: 8,
-        center: {lat: 28.147, lng: 84.708},
-        mapTypeId: google.maps.MapTypeId.TERRAIN
-    };
-    
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    
-    // Create a <script> tag and set the USGS URL as the source.
-    var script = document.createElement('script');
-    
-    script.src = 'http://earthquake.usgs.gov/earthquakes/feed/geojsonp/2.5/week';
-    document.getElementsByTagName('head')[0].appendChild(script);
-    
-    map.data.setStyle(function(feature) {
-        var magnitude = feature.getProperty('mag');
-        return {
-            icon: getCircle(magnitude)
-        };
-    });
-}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Embed Example</title>
+</head>
+<body>
 
-function getCircle(magnitude) {
-    var circle = {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: 'darkred',
-        fillOpacity: .5,
-        scale: Math.pow(2, magnitude) / 2,
-        strokeColor: 'black',
-        strokeWeight: 1.0
-    };
-    return circle;
-        }
+    <img src="bg_temp.png" alt="United Everest">
 
-function eqfeed_callback(results) {
-    map.data.addGeoJson(results);
-}
-
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
-  </head>
-  <body>
-    <div id="map-canvas"></div>
-  </body>
+</body>
 </html>
